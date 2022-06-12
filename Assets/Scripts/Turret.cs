@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 public class Turret : MonoBehaviour
@@ -38,8 +39,10 @@ public class Turret : MonoBehaviour
             currentDelay = reloadDelay;
             foreach (var barrel in turretBarrels)
             {
-                GameObject bullet = Instantiate(bulletPrefab);
-                bullet.transform.position = barrel.position;
+                Vector2 bulletStartVector = new Vector2();
+                bulletStartVector = barrel.position;
+                GameObject bullet = PhotonNetwork.Instantiate(bulletPrefab.name, bulletStartVector, Quaternion.identity);
+                // bullet.transform.position = barrel.position;
                 bullet.transform.localRotation = barrel.rotation;
                 bullet.GetComponent<Bullet>().Initialize();
                 foreach (var collider in tankColliders)
