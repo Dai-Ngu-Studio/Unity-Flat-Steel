@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float speed = 10f;
+    public int damage = 10;
+    public float maxDistance = 10;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private Vector2 startPosition;
+    private float conquaredDistance = 0;
+    private Rigidbody2D rb2d;
 }
