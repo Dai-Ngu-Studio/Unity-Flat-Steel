@@ -196,7 +196,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb2d: {fileID: 0}
   maxSpeed: 100
+  minSpeed: -20
   rotationSpeed: 100
+  forwardAcceleration: 50
+  backwardAcceleration: 100
+  brakeAcceleration: 200
+  currentSpeed: 0
 --- !u!1 &8017952718398431842
 GameObject:
   m_ObjectHideFlags: 0
