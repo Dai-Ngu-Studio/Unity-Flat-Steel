@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
-
+using Photon.Pun;
 public class Bullet : MonoBehaviour
 {
     public float speed = 100f;
@@ -31,13 +31,13 @@ public class Bullet : MonoBehaviour
         travelledDistance = Vector2.Distance(transform.position, startPosition);
         if (travelledDistance > maxDistance)
         {
-            Object.Destroy(this.gameObject);
+            PhotonNetwork.Destroy(this.gameObject);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log("Collied" + col.name);
-        Object.Destroy(this.gameObject);
+        PhotonNetwork.Destroy(this.gameObject);
     }
 }
