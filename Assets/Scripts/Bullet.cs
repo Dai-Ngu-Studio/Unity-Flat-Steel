@@ -47,8 +47,11 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("Collied" + col.name);
+        var damagable = col.GetComponent<Damagable>();
+        if (damagable != null)
+        {
+            damagable.Hit(damage);
+        }
         SelfDestruct();
-
     }
 }
