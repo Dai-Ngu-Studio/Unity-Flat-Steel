@@ -1,10 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Damagable : MonoBehaviour
+public class Damagable : MonoBehaviourPun
 {
     public int MaxHealth = 100;
 
@@ -20,21 +21,35 @@ public class Damagable : MonoBehaviour
         }
     }
 
-    public UnityEvent onDead;
+    // public UnityEvent onDead;
+    public void onDead()
+    {
+        PhotonNetwork.Destroy(transform.parent.gameObject);
+    }
+
     public UnityEvent<float> onHealthChanged;
     public UnityEvent onHit, onHeal;
+
+    private PhotonView view;
 
     private void Start()
     {
         Health = MaxHealth;
+        view = GetComponent<PhotonView>();
     }
 
     public void Hit(int inflictedDamage)
     {
+        view.RPC("HitRPC", RpcTarget.AllBuffered, inflictedDamage);
+    }
+
+    [PunRPC]
+    void HitRPC(int inflictedDamage)
+    {
         Health -= inflictedDamage;
         if (Health <= 0)
         {
-            onDead?.Invoke();
+            onDead();
         }
         else
         {
