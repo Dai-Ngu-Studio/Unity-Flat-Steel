@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using Object = UnityEngine.Object;
 using Photon.Pun;
+using UnityEngine.Events;
+
 public class Bullet : MonoBehaviour
 {
     public float speed = 100f;
     public int damage = 10;
     public float maxDistance = 10;
-
+    public UnityEvent OnHit;
     private Vector2 startPosition;
     private float travelledDistance = 0;
     private Rigidbody2D rb2d;
@@ -48,6 +50,7 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         var damagable = col.GetComponent<Damagable>();
+        OnHit?.Invoke();
         if (damagable != null)
         {
             damagable.Hit(damage);
