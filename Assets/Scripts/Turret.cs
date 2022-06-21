@@ -5,7 +5,7 @@ using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Turret : MonoBehaviour
+public class Turret : MonoBehaviourPun
 {
     public List<Transform> turretBarrels;
     public GameObject bulletPrefab;
@@ -17,6 +17,9 @@ public class Turret : MonoBehaviour
 
     public UnityEvent OnShoot, OnCantShoot;
     public UnityEvent<float> OnReloading;
+
+    private PhotonView view;
+
     private void Awake()
     {
         tankColliders = GetComponentsInParent<Collider2D>();
@@ -24,8 +27,10 @@ public class Turret : MonoBehaviour
 
     private void Start()
     {
+        view = GetComponent<PhotonView>();
         OnReloading?.Invoke(currentDelay);
     }
+
     private void Update()
     {
         if (canShoot == false)
@@ -39,6 +44,12 @@ public class Turret : MonoBehaviour
         }
     }
 
+    // public void Shoot()
+    // {
+    //     view.RPC("ShootRPC", RpcTarget.AllBuffered);
+    // }
+
+    
     public void Shoot()
     {
         if (canShoot)
@@ -49,7 +60,8 @@ public class Turret : MonoBehaviour
             {
                 Vector2 bulletStartVector = new Vector2();
                 bulletStartVector = barrel.position;
-                GameObject bullet = PhotonNetwork.Instantiate(bulletPrefab.name, bulletStartVector, Quaternion.identity);
+                GameObject bullet =
+                    PhotonNetwork.Instantiate(bulletPrefab.name, bulletStartVector, Quaternion.identity);
                 // bullet.transform.position = barrel.position;
                 bullet.transform.localRotation = barrel.rotation;
                 bullet.GetComponent<Bullet>().Initialize();
@@ -58,12 +70,17 @@ public class Turret : MonoBehaviour
                     Physics2D.IgnoreCollision(bullet.GetComponent<Collider2D>(), collider);
                 }
             }
-            OnShoot?.Invoke();
+            view.RPC("OnShootRPCEvent", RpcTarget.AllBuffered);
             OnReloading?.Invoke(currentDelay);
         }
         else
         {
             OnCantShoot?.Invoke();
         }
+    }
+    [PunRPC]
+    public void OnShootRPCEvent()
+    {
+        OnShoot?.Invoke();
     }
 }

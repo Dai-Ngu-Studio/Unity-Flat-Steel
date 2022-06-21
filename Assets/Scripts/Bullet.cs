@@ -44,12 +44,12 @@ public class Bullet : MonoBehaviour
     {
         if (view.IsMine)
         {
-            PhotonNetwork.Destroy(this.gameObject);
+            PhotonNetwork.Destroy(gameObject);
         }
     }
     private void OnTriggerEnter2D(Collider2D col)
     {
-        var damagable = col.GetComponent<Damagable>();
+        Damagable damagable = col.GetComponent<Damagable>();
         OnHit?.Invoke();
         if (damagable != null)
         {

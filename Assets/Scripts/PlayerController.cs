@@ -7,7 +7,6 @@ using UnityEngine.Events;
 public class PlayerController : MonoBehaviour
 {
     private Camera mainCamera;
-    public float speed;
     public UnityEvent OnShoot = new UnityEvent();
     public UnityEvent<Vector2> OnMoveBody = new UnityEvent<Vector2>();
     public UnityEvent<Vector2> OnMoveTurret = new UnityEvent<Vector2>();

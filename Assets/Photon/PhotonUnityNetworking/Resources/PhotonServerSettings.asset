@@ -41,6 +41,9 @@ MonoBehaviour:
   - RespawnSpaceship
   - HitRPC
   - CreteObjectRPC
+  - OnTriggerEnter2DRPC
+  - HitRPC
+  - OnShootRPCEvent
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

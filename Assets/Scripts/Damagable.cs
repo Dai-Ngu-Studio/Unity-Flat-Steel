@@ -4,12 +4,20 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Damagable : MonoBehaviourPun
 {
     public int MaxHealth = 100;
 
     [SerializeField] private int currentHealth;
+    private PhotonView view;
+
+    private void Start()
+    {
+        view = GetComponent<PhotonView>();
+        Health = MaxHealth;
+    }
 
     public int Health
     {
@@ -17,7 +25,10 @@ public class Damagable : MonoBehaviourPun
         set
         {
             currentHealth = value;
-            onHealthChanged?.Invoke((float)currentHealth / MaxHealth);
+            if (view.IsMine)
+            {
+                UpdateHealthUI((float)currentHealth / MaxHealth);
+            }
         }
     }
 
@@ -27,15 +38,10 @@ public class Damagable : MonoBehaviourPun
         PhotonNetwork.Destroy(transform.parent.gameObject);
     }
 
-    public UnityEvent<float> onHealthChanged;
-    public UnityEvent onHit, onHeal;
-
-    private PhotonView view;
-
-    private void Start()
+    public void UpdateHealthUI(float currentPercentageHealth)
     {
-        Health = MaxHealth;
-        view = GetComponent<PhotonView>();
+        Slider slider = GameObject.Find("HealthBar").GetComponent<Slider>();
+        slider.value = currentPercentageHealth;
     }
 
     public void Hit(int inflictedDamage)
@@ -50,10 +56,6 @@ public class Damagable : MonoBehaviourPun
         if (Health <= 0)
         {
             onDead();
-        }
-        else
-        {
-            onHit?.Invoke();
         }
     }
 }
