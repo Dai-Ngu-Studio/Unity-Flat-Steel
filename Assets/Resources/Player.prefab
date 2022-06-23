@@ -344,12 +344,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2d: {fileID: 0}
-  maxSpeed: 500
-  minSpeed: -20
+  maxSpeed: 200
+  minSpeed: -100
   rotationSpeed: 180
   forwardAcceleration: 200
   backwardAcceleration: 100
-  brakeAcceleration: 200
+  brakeAcceleration: 500
   currentSpeed: 0
 --- !u!1 &8017952718398431842
 GameObject:
@@ -782,7 +782,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8017952719613117830}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.303, y: 0.175, z: 0}
+  m_LocalPosition: {x: 0.303, y: 0.015, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -859,7 +859,7 @@ MonoBehaviour:
   turretBarrels:
   - {fileID: 7789172216573633463}
   bulletPrefab: {fileID: 8577398916990805914, guid: 46aef1cbc96be134f8b333706881edaa, type: 3}
-  reloadDelay: 0.3
+  reloadDelay: 0.7
   currentDelay: 0
   OnShoot:
     m_PersistentCalls:

@@ -55,6 +55,7 @@ public class Bullet : MonoBehaviour
         {
             damagable.Hit(damage);
         }
+        CameraShake.Instance.ShakeCamera();
         SelfDestruct();
     }
 }
