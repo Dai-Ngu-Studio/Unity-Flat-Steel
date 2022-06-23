@@ -53,7 +53,7 @@ public class Damagable : MonoBehaviourPun
     void HitRPC(int inflictedDamage)
     {
         Health -= inflictedDamage;
-        if (Health <= 0)
+        if (Health <= 0 && view.IsMine)
         {
             onDead();
         }
