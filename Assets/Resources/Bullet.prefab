@@ -226,7 +226,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7244157812823911014}
         m_TargetAssemblyTypeName: ObjectGeneratorRandomPositionUtil, Assembly-CSharp
-        m_MethodName: CreteObject
+        m_MethodName: CreateObject
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

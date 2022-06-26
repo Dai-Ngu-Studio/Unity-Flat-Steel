@@ -26,12 +26,16 @@ public class ObjectGeneratorRandomPositionUtil : MonoBehaviourPun
         return Quaternion.Euler(0, 0, Random.Range(0, 360));
     }
 
-    public void CreteObject()
+    public void CreateObject()
     {
-        view.RPC("CreteObjectRPC", RpcTarget.AllBuffered);
+        if (view == null)
+        {
+            view = GetComponent<PhotonView>();
+        }
+        view.RPC("CreateObjectRPC", RpcTarget.AllBuffered);
     }
     [PunRPC]
-    public void CreteObjectRPC()
+    public void CreateObjectRPC()
     {
         Vector2 position = GetRandomPosition();
         GameObject impactObject = GetObject();

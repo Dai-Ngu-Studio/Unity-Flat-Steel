@@ -35,14 +35,10 @@ MonoBehaviour:
   StartInOfflineMode: 0
   RpcList:
   - ClickRpc
+  - CreateObjectRPC
   - DestroyRpc
-  - DestroySpaceship
-  - Fire
-  - RespawnSpaceship
   - HitRPC
-  - CreteObjectRPC
-  - OnTriggerEnter2DRPC
-  - HitRPC
+  - IncreaseDeadCountRPC
   - OnShootRPCEvent
   DisableAutoOpenWizard: 1
   ShowSettings: 1

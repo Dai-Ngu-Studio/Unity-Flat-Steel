@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -12,6 +13,8 @@ public class Damagable : MonoBehaviourPun
 
     [SerializeField] private int currentHealth;
     private PhotonView view;
+
+    public Canvas gameResultCanvas;
 
     private void Start()
     {
@@ -36,6 +39,10 @@ public class Damagable : MonoBehaviourPun
     public void onDead()
     {
         PhotonNetwork.Destroy(transform.parent.gameObject);
+        // TextMeshPro myPosition = GameObject.Find("Total player").GetComponent<TextMeshPro>();
+        StaticScript.Instance.MyRank = StaticScript.Instance.IncreaseDeadCount() + 1;
+        StaticScript.Instance.HideOrShowGameOverCanvas(true);
+        StaticScript.Instance.isDead = true;
     }
 
     public void UpdateHealthUI(float currentPercentageHealth)

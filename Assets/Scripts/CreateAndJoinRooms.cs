@@ -23,5 +23,8 @@ public class CreateAndJoinRooms : MonoBehaviourPunCallbacks
         PhotonNetwork.LoadLevel("Game");
     }
     // Start is called before the first frame update
-
+    public override void OnLeftRoom()
+    {
+        Debug.Log("AVVVVVVVVVVVV");
+    }
 }
