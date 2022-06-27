@@ -344,10 +344,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2d: {fileID: 0}
-  maxSpeed: 200
+  maxSpeed: 100
   minSpeed: -100
   rotationSpeed: 180
-  forwardAcceleration: 200
+  forwardAcceleration: 300
   backwardAcceleration: 100
   brakeAcceleration: 500
   currentSpeed: 0
