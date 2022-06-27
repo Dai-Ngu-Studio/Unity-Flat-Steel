@@ -28,7 +28,7 @@ public class StaticScript : MonoBehaviourPun
         cinemachineVirtualCamera = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
         view = GetComponent<PhotonView>();
         
-        HideOrShowGameOverCanvas(false);
+        // HideOrShowGameOverCanvas(false);
     }
 
     // Update is called once per frame
