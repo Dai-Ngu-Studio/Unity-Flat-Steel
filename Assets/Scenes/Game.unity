@@ -6164,7 +6164,7 @@ GameObject:
   - component: {fileID: 91396265}
   - component: {fileID: 91396264}
   m_Layer: 5
-  m_Name: Button
+  m_Name: ExitBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6599,10 +6599,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e48c87fbc5f425e88c25ef0c32b47ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameResultCanvas: {fileID: 616567698}
+  BackgroundMusic: {fileID: 1726120609}
   playerDeadCount: 0
   MyRank: 0
   isDead: 0
-  gameResultCanvas: {fileID: 616567698}
 --- !u!4 &472033239
 Transform:
   m_ObjectHideFlags: 0
@@ -7623,10 +7624,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8017952718869597033, guid: 6bff7023a958a5076ab774117f2eba39, type: 3}
-  X: 0
-  Y: 0
   ChoosePositionCanvas: {fileID: 1675645382}
   HealthCanvas: {fileID: 1369583254}
+  BackgroundMusic: {fileID: 1726120609}
 --- !u!114 &897369582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7645,18 +7645,18 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 0}
+  m_LookAt: {fileID: 897369583}
+  m_Follow: {fileID: 2014496504}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 2.5
+    OrthographicSize: 8
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7768987, y: 1}
+    m_SensorSize: {x: 1.7772585, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -7673,7 +7673,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 897369580}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -34.24871}
+  m_LocalPosition: {x: 1, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7693,7 +7693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec5af847738d8e60b810fb5f3d2d2685, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intensity: 3
+  intensity: 4
   time: 0.1
 --- !u!1 &907456085
 GameObject:
@@ -7884,7 +7884,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 2.5
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -7908,7 +7908,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 971008389}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -34.24871}
+  m_LocalPosition: {x: 1, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10363,7 +10363,7 @@ GameObject:
   - component: {fileID: 2031554485}
   - component: {fileID: 2031554484}
   m_Layer: 5
-  m_Name: Button
+  m_Name: SpectatorBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
