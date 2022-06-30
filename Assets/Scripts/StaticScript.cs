@@ -10,12 +10,13 @@ public class StaticScript : MonoBehaviourPun
 {
     public static StaticScript Instance { get; private set; }
     private CinemachineVirtualCamera cinemachineVirtualCamera;
-    
+    public Canvas gameResultCanvas;
+
     public int playerDeadCount = 0;
     public int MyRank;
     public bool isDead = false;
     
-    public Canvas gameResultCanvas;
+   
 
     private PhotonView view;
 
@@ -27,11 +28,8 @@ public class StaticScript : MonoBehaviourPun
         Instance = this;
         cinemachineVirtualCamera = GameObject.Find("CM vcam1").GetComponent<CinemachineVirtualCamera>();
         view = GetComponent<PhotonView>();
-        
-        // HideOrShowGameOverCanvas(false);
     }
 
-    // Update is called once per frame
     public void HideOrShowGameOverCanvas(bool visible)
     {
         
