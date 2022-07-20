@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Photon.Pun;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class Damagable : MonoBehaviourPun
@@ -48,6 +44,7 @@ public class Damagable : MonoBehaviourPun
     public void UpdateHealthUI(float currentPercentageHealth)
     {
         Slider slider = GameObject.Find("HealthBar").GetComponent<Slider>();
+        GameObject.Find("UserID").GetComponent<TextMeshProUGUI>().text = PhotonNetwork.AuthValues.UserId;
         slider.value = currentPercentageHealth;
     }
 

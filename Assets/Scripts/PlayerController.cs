@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using Photon.Pun;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -54,5 +53,33 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 movementVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         OnMoveBody?.Invoke(movementVector.normalized);
+
+        // get current user id; get the tank gameobject and get the transform view of the tank
+        var userid = PhotonNetwork.AuthValues.UserId;
+        var tankObject = gameObject.transform.GetChild(0);
+        var transformView = tankObject.GetComponent<PhotonTransformViewClassic>();
+
+        // debug stuff ; safe to remove
+        //GameObject.Find("View ID").GetComponent<TextMeshProUGUI>().text = view.ViewID.ToString();
+        //GameObject.Find("PosX").GetComponent<TextMeshProUGUI>().text = transformView.transform.position.x.ToString();
+        //GameObject.Find("PosY").GetComponent<TextMeshProUGUI>().text = transformView.transform.position.y.ToString();
+        //Debug.Log($"{view.ViewID} at {transformView.transform.position.x}");
+        //Debug.Log($"{view.ViewID} at {transformView.transform.position.y}");
+
+        // get custom properties of room; tryAdd to add key if not existed; then set value for key
+        var customProps = PhotonNetwork.CurrentRoom.CustomProperties;
+        customProps.TryAdd(userid, new Dictionary<string, float>());
+        customProps[userid] = new Dictionary<string, float>() {
+            { "x", transformView.transform.position.x },
+            { "y", transformView.transform.position.y },
+            { "qx", transformView.transform.rotation.x },
+            { "qy", transformView.transform.rotation.y },
+            { "qz", transformView.transform.rotation.z },
+            { "qw", transformView.transform.rotation.w },
+        };
+
+        // update custom properties of room (will update to other clients)
+        // (slight race condition, last client to move will be the one to update the custom properties)
+        PhotonNetwork.CurrentRoom.SetCustomProperties(customProps);
     }
 }
