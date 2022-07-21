@@ -34,11 +34,9 @@ public class StaticScript : MonoBehaviourPun
 
         var customProps = PhotonNetwork.CurrentRoom.CustomProperties;
         var posProp = customProps[PhotonNetwork.AuthValues.UserId];
-        Debug.Log(PhotonNetwork.AuthValues.UserId);
 
         if (posProp != null)
         {
-            Debug.Log(posProp);
             var positions = (Dictionary<string, float>)posProp;
             var playerOnServer = PhotonNetwork.Instantiate(player.name,
                 new Vector2(positions["x"], positions["y"]),

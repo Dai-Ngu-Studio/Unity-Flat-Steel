@@ -58,11 +58,9 @@ public class PlayerController : MonoBehaviour
         var userid = PhotonNetwork.AuthValues.UserId;
         var tankObject = gameObject.transform.GetChild(0);
         var transformView = tankObject.GetComponent<PhotonTransformViewClassic>();
+        var damageable = tankObject.GetComponent<Damagable>();
 
         // debug stuff ; safe to remove
-        //GameObject.Find("View ID").GetComponent<TextMeshProUGUI>().text = view.ViewID.ToString();
-        //GameObject.Find("PosX").GetComponent<TextMeshProUGUI>().text = transformView.transform.position.x.ToString();
-        //GameObject.Find("PosY").GetComponent<TextMeshProUGUI>().text = transformView.transform.position.y.ToString();
         //Debug.Log($"{view.ViewID} at {transformView.transform.position.x}");
         //Debug.Log($"{view.ViewID} at {transformView.transform.position.y}");
 
@@ -76,6 +74,7 @@ public class PlayerController : MonoBehaviour
             { "qy", transformView.transform.rotation.y },
             { "qz", transformView.transform.rotation.z },
             { "qw", transformView.transform.rotation.w },
+            { "h", damageable.Health },
         };
 
         // update custom properties of room (will update to other clients)
