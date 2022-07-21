@@ -13,7 +13,6 @@ public class SpawnPlayers : MonoBehaviour
     public GameObject BackgroundMusic;
     public void SpawnAtPosition(int position)
     {
-        Debug.Log(position);
         switch (position)
         {
             case 1:

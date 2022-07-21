@@ -1,4 +1,6 @@
 using Photon.Pun;
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +17,17 @@ public class Damagable : MonoBehaviourPun
     private void Start()
     {
         view = GetComponent<PhotonView>();
-        Health = MaxHealth;
+        var customProps = PhotonNetwork.CurrentRoom.CustomProperties;
+        var userDataProp = customProps[PhotonNetwork.AuthValues.UserId];
+        if (userDataProp != null)
+        {
+            var userData = (Dictionary<string, float>)userDataProp;
+            Health = (int)Math.Round(userData["h"]);
+        }
+        else
+        {
+            Health = MaxHealth;
+        }
     }
 
     public int Health
